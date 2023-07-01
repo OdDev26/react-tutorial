@@ -21,6 +21,14 @@ import Form from "./components/Form";
 import TrackingFormInput from "./components/TrackingFormInpuUsingTheRefHookt";
 import TrackingFormInpuUsingTheRefHook from "./components/TrackingFormInpuUsingTheRefHookt";
 import TrackingFormInputUsingTheStateHook from "./components/TrackingFormInputUsingTheStateHook";
+import BuildingFormsUsingReactHookForm from "./components/BuildingFormsUsingReactHookForm";
+import UsingZodToHandleFormValidation from "./components/UsingZodToHandleFormValidation";
+import ExpenseList from "./expense-tracker-exercise/component/ExpenseList";
+import ExpenseFilter from "./expense-tracker-exercise/ExpenseFilter";
+import ExpenseForm from "./expense-tracker-exercise/component/ExpenseForm";
+
+// Adding "as const" in line 30 ensures the array is read only
+export const categories = ["Groceries", "Utilities", "Entertainment"] as const;
 function App() {
   /** Passing data and function via props
   const items = ["Milk", "Bread", "Cake"];
@@ -137,9 +145,29 @@ function App() {
     </>
   ); */
 
+  const [selectedCategory, setSelectedCatgeory] = useState("");
+  const [expenses, setExpenses] = useState([
+    { id: 1, description: "aba", amount: 20, category: "Utilities" },
+    { id: 2, description: "bab", amount: 40, category: "Utilities" },
+    { id: 3, description: "cab", amount: 50, category: "Utilities" },
+  ]);
+
+  const filteredExpenses = selectedCategory
+    ? expenses.filter((expense) => expense.category === selectedCategory)
+    : expenses;
+
   return (
     <>
-      <TrackingFormInputUsingTheStateHook />
+      <ExpenseForm />
+      <ExpenseFilter
+        onSelectCategory={(category) => setSelectedCatgeory(category)}
+      />
+      <ExpenseList
+        expenses={filteredExpenses}
+        onDelete={(id) =>
+          setExpenses(expenses.filter((expense) => expense.id !== id))
+        }
+      />
     </>
   );
 }
