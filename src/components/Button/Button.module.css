@@ -1,0 +1,9 @@
+.btn {
+  border: none;
+  border-radius: 2px;
+}
+
+.btnPrimary {
+  background: rgb(72, 72, 246);
+  color: white;
+}
