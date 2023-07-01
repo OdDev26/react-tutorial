@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const TrackingFormInputUsingTheStateHook = () => {
   const [person, setPerson] = useState({
     name: "",
-    age: "",
+    age: 0,
   });
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
