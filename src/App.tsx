@@ -1,4 +1,5 @@
-import { Children, useState } from "react";
+import { Children, useState, useEffect } from "react";
+import axios from "axios";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import ListGroup from "./components/ListGroup/ListGroup";
@@ -24,11 +25,12 @@ import TrackingFormInputUsingTheStateHook from "./components/TrackingFormInputUs
 import BuildingFormsUsingReactHookForm from "./components/BuildingFormsUsingReactHookForm";
 import UsingZodToHandleFormValidation from "./components/UsingZodToHandleFormValidation";
 import ExpenseList from "./expense-tracker-exercise/component/ExpenseList";
-import ExpenseFilter from "./expense-tracker-exercise/ExpenseFilter";
+import ExpenseFilter from "./expense-tracker-exercise/component/ExpenseFilter";
 import ExpenseForm from "./expense-tracker-exercise/component/ExpenseForm";
+import ProductList from "./components/ProductList";
+import LearningToFetchDataFromBackend from "./components/LearningToFetchDataFromBackend";
 
 // Adding "as const" in line 30 ensures the array is read only
-export const categories = ["Groceries", "Utilities", "Entertainment"] as const;
 function App() {
   /** Passing data and function via props
   const items = ["Milk", "Bread", "Cake"];
@@ -145,7 +147,7 @@ function App() {
     </>
   ); */
 
-  const [selectedCategory, setSelectedCatgeory] = useState("");
+  /**const [selectedCategory, setSelectedCatgeory] = useState("");
   const [expenses, setExpenses] = useState([
     { id: 1, description: "aba", amount: 20, category: "Utilities" },
     { id: 2, description: "bab", amount: 40, category: "Utilities" },
@@ -154,11 +156,25 @@ function App() {
 
   const filteredExpenses = selectedCategory
     ? expenses.filter((expense) => expense.category === selectedCategory)
-    : expenses;
+    : expenses;**/
 
   return (
     <>
-      <ExpenseForm />
+      <LearningToFetchDataFromBackend />
+      {/* <select
+        className="form-select"
+        onChange={(event) => setSelectedCatgeory(event.target.value)}
+      >
+        <option value="Clothing">Clothing</option>
+        <option value="Household">Houselhold</option>
+        <option value="Gym">Gym</option>
+      </select>
+      <ProductList category={selectedCategory} /> */}
+      {/* <ExpenseForm
+        onSubmit={(data) =>
+          setExpenses([...expenses, { ...data, id: expenses.length + 1 }])
+        }
+      />
       <ExpenseFilter
         onSelectCategory={(category) => setSelectedCatgeory(category)}
       />
@@ -167,7 +183,7 @@ function App() {
         onDelete={(id) =>
           setExpenses(expenses.filter((expense) => expense.id !== id))
         }
-      />
+      /> */}
     </>
   );
 }
